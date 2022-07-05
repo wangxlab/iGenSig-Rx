@@ -53,6 +53,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 ## Total running time on Windows 10 was ~ 2 hours. It can vary according to your computer's spec.
 
 > setwd("your working directory")#set your working directory
+
 > source("iGenSigOncologist_Modules_b3.2.3.R")
 >
 #############################################################################  
@@ -61,16 +62,25 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 #phenoData must contain a column called "label" indicating whether the subject is "sen" or "res" or "mid"
 
 > CALGB.phenotypefile<-"/zfs2/xiaosongwang/sal170/17_9_iGenSig_b3.0.3_NOAH_IJB_NeoALTTO/70_GithubSubmissionTest_iGenSigOnco/PhenotypeData/CALGB_PhenotypesData_277s.tsv"
+
 > CALGB.phenoData<-read.delim(CALGB.phenotypefile,stringsAsFactors=F,check.names=F,header=T,sep="\t")  
-> CALGB.phenoData$SUBJECT_ID=gsub("(\\_)0+", "\\1", CALGB.phenoData$SUBJECT_ID, perl=TRUE)    
+
+> CALGB.phenoData$SUBJECT_ID=gsub("(\\_)0+", "\\1", CALGB.phenoData$SUBJECT_ID, perl=TRUE)   
+ 
 > CALGB.phenoData$label<-ifelse(CALGB.phenoData$pCR_Breast==1,"sen", ifelse(CALGB.phenoData$pCR_Breast==0,"res",NA))
 
+
 > ACOSOG.phenotypefile<-"/zfs2/xiaosongwang/sal170/17_9_iGenSig_b3.0.3_NOAH_IJB_NeoALTTO/70_GithubSubmissionTest_iGenSigOnco/PhenotypeData/ACOSOG_PhenotypeData_47s.tsv"   #ACOSOG_PhenotypeData.tsv"
+
 > ACOSOG.phenoData<-read.delim(ACOSOG.phenotypefile, stringsAsFactors=F,check.names=F,header=T,sep="\t")
+
 > ACOSOG.phenoData$label<-ifelse(ACOSOG.phenoData$pCR_Breast==1,"sen",ifelse(ACOSOG.phenoData$pCR_Breast==0,"res",NA)) #revise this based on different dataset
 
+
 > NOAH.phenotypefile<-"/zfs2/xiaosongwang/sal170/17_9_iGenSig_b3.0.3_NOAH_IJB_NeoALTTO/70_GithubSubmissionTest_iGenSigOnco/PhenotypeData/NOAH_PhenotypeData_63s.tsv" 
+
 > NOAH.phenoData<-read.delim(NOAH.phenotypefile, stringsAsFactors=F,check.names=F,header=T,sep="\t")
+
 > NOAH.phenoData$label<-ifelse(NOAH.phenoData$pCR_Breast==1,"sen",ifelse(NOAH.phenoData$pCR_Breast==0,"res",NA)) #revise this based on different dataset
 
 #############################################################################
