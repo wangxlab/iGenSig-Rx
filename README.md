@@ -47,7 +47,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 ## D. How to build iGenSig-oncologist models based on CALGB dataset and predict the therapeutic response in ACOSOG and NOAH datasets.
 
 * Find “iGenSigOncologist_RunCalculation_b3.2.3.R” file in your folder. This file contains the script to perform iGenSig-oncologist modeling. 
-* 
+
 ## the iGenSig-oncologist module has been tested on the latest R version 4.1.0 with Windows 10 computer Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz, 32 GB RAM. 
 
 ## Total running time on Windows 10 was ~ 2 hours. It can vary according to your computer's spec.
