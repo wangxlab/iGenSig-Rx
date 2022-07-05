@@ -2,55 +2,57 @@
 
 ## iGenSig-oncologist: an integral genomic signature based white-box method for modeling clinical therapeutic responses using genome-wide sequencing data
 
-•	The current version of iGenSig-oncologist is beta 3.2.3 (July 5st, 2022). 
+â€¢	The current version of iGenSig-oncologist is beta 3.2.3 (July 5st, 2022). 
 
-•	The iGenSig-oncologist was built on R version 4.1.0 and tested on Linux and Windows environment. 
+â€¢	The iGenSig-oncologist was built on R version 4.1.0 and tested on Linux and Windows environment. 
 
 ## A. Introduction
 
-•	Here we developed an integral genomic signature (iGenSig-oncologist) analysis as a new class of transparent, interpretable, and resilient modeling methods for big data-based precision medicine with improved cross-dataset applicability and tolerance to sequencing bias. 
+â€¢	Here we developed an integral genomic signature (iGenSig-oncologist) analysis as a new class of transparent, interpretable, and resilient modeling methods for big data-based precision medicine with improved cross-dataset applicability and tolerance to sequencing bias. 
 
-•	We define genomic features that significantly correlate with a clinical phenotype (such as therapeutic response) as genomic correlates, and an integral genomic signature as the integral set of redundant genomic correlates for a given clinical phenotype such as therapeutic response.
+â€¢	We define genomic features that significantly correlate with a clinical phenotype (such as therapeutic response) as genomic correlates, and an integral genomic signature as the integral set of redundant genomic correlates for a given clinical phenotype such as therapeutic response.
 
-•	We postulate that the redundant genomic features, which are usually eliminated through dimensionality reduction or feature removal  during multi-omics modeling, may help overcome the sequencing bias. 
+â€¢	We postulate that the redundant genomic features, which are usually eliminated through dimensionality reduction or feature removal  during multi-omics modeling, may help overcome the sequencing bias. 
 
-•	Using genomic dataset for chemical perturbations, we developed the iGenSig-oncologist models predicting clinical response to HER2-targeted therapy and tested the cross-dataset performance of selected models based on independent multi-omics datasets for breast cancer HER2-positive patients assessing their therapeutic responses.
+â€¢	Using genomic dataset for chemical perturbations, we developed the iGenSig-oncologist models predicting clinical response to HER2-targeted therapy and tested the cross-dataset performance of selected models based on independent multi-omics datasets for breast cancer HER2-positive patients assessing their therapeutic responses.
 
 ## B. How to download R code and data files to run iGenSig-oncologist
 
-• Download all files through git to your local directory. 
+â€¢ Download all files through git to your local directory. 
 
 $ git clone https://github.com/wangxlab/iGenSig-oncologist
 
 If you have downloaded all necessary data files, you can find these 4 directories; 
 
-1	“./GenotypePrecalmatrixData
+1	â€œ./GenotypePrecalmatrixData
 
 You can find rds files for genotype and precalculated feature redundancy data of 4 datasets (CALGB, ACOSOG, NOAH, and TCGA).
 
-2	“./PhenotypeData” directory
+2	â€œ./PhenotypeDataâ€ directory
 
 You can find Phenotype data files (.tsv file) of 3 datasets (CALGB, ACOSOG, and NOAH).
 
-3.	“./TestsetAnnotationData” directory
+3.	â€œ./TestsetAnnotationDataâ€ directory
 
 You can find annotation files containing the subject IDs of permutated CALGB test sets (.tsv file). 
 
 
 ## C. Installing R packages
 
-•	Find "iGenSigOncologist_Modules_b3.2.3.R" file and see line 1~20. Those are the list of R packages you may have to install unless you did. 
+â€¢	Find "iGenSigOncologist_Modules_b3.2.3.R" file and see line 1~20. Those are the list of R packages you may have to install unless you did. 
 
-•	If you haven't installed any R pacakges below, it will take about 1 hour. 
+â€¢	If you haven't installed any R pacakges below, it will take about 1 hour. 
 
 
 ## D. How to build iGenSig-oncologist models based on CALGB dataset and predict the therapeutic response in ACOSOG and NOAH datasets.
 
-* Find “iGenSigOncologist_RunCalculation_b3.2.3.R” file in your folder. This file contains the script to perform iGenSig-oncologist modeling. 
-* 
-## the iGenSig-oncologist module has been tested on the latest R version 4.1.0 with Windows 10 computer Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz, 32 GB RAM. 
+* Find â€œiGenSigOncologist_RunCalculation_b3.2.3.Râ€ file in your folder. This file contains the script to perform iGenSig-oncologist modeling. 
 
-## Total running time on Windows 10 was ~ 2 hours. It can vary according to your computer's spec.
+* the iGenSig-oncologist module has been tested on the latest R version 4.1.0 with Windows 10 computer Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz, 32 GB RAM. 
+
+* Total running time on Windows 10 was ~ 2 hours. It can vary according to your computer's spec.
+
+######################################################################################
 
 >setwd("your working directory")
 
@@ -231,7 +233,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 
 
 ## E. Expected outcome
-•	Please find "./Result_iGenSigOncologist/0.13_RWC0.13_rt1_ENCpn1_Pw1/iGenSig_CALGB_ACOSOG/2022-07-02.dGenSig_XX_benchmark.result.xls" file. The file has the summary of the prediction performance AUROC.
+â€¢	Please find "./Result_iGenSigOncologist/0.13_RWC0.13_rt1_ENCpn1_Pw1/iGenSig_CALGB_ACOSOG/2022-07-02.dGenSig_XX_benchmark.result.xls" file. The file has the summary of the prediction performance AUROC.
 
 "Fold"	"predictor"	"SUBJECT(n=)"	"AUC"	"Survival.optCut"	"HazardRatio"	"PValue"	"Spearman.Corr.CoxResidue"	"Feature.sensitive"	"Feature.resistant"
 "0"	"GenSig:sen"	"42"	"0.763636363636364"	"-0.299545489516637"	"0.168398230118203"	"0.0283057354094775"	"-5.76935698537326e-13"	"8395"	"16469"
