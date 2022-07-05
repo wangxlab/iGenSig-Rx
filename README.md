@@ -176,37 +176,37 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 
 >   if (file.exists(weightfile)) {
 
->     print(paste("calcluating Gensig using",weightfile))
+     print(paste("calcluating Gensig using",weightfile))
 
->     bachCal.GenSig.similarity(subject.sensitive=NULL,feature.select=feature.select,weightfile=weightfile,trainset=trainset,outprefix=outprefix,
+     bachCal.GenSig.similarity(subject.sensitive=NULL,feature.select=feature.select,weightfile=weightfile,trainset=trainset,outprefix=outprefix,
 
->                               subject.genotype.list=CALGB.genotype.list,preCalmatrix=CALGB.preCalmatrix,
+                               subject.genotype.list=CALGB.genotype.list,preCalmatrix=CALGB.preCalmatrix,
 
->                               tcga.genotype.list=TCGA.genotype.list,subject.gensigdir=CALGB.gensigdir,method=method,
+                               tcga.genotype.list=TCGA.genotype.list,subject.gensigdir=CALGB.gensigdir,method=method,
 
->                               redun.method=redun.method,redun.cut=redun.cut,minsize=minsize,sen.weightcut=sen.weightcut,res.weightcut=res.weightcut,
+                               redun.method=redun.method,redun.cut=redun.cut,minsize=minsize,sen.weightcut=sen.weightcut,res.weightcut=res.weightcut,
 
->                               power=power,root=root,ECNpenalty=ECNpenalty,rm.equivocal=rm.equivocal,highlevel.minsize=highlevel.minsize,by.cluster=by.cluster) #p.cut should be assigned NULL if similarity index is used instead of correlation statistic
+                               power=power,root=root,ECNpenalty=ECNpenalty,rm.equivocal=rm.equivocal,highlevel.minsize=highlevel.minsize,by.cluster=by.cluster) #p.cut should be assigned NULL if similarity index is used instead of correlation statistic
 
->   }else{
+   }else{
 
->     subject.sensitive=CALGB.phenoData$SUBJECT_ID[(CALGB.phenoData$SUBJECT_ID %in% trainset) & CALGB.phenoData$pCR_Breast==1]
+     subject.sensitive=CALGB.phenoData$SUBJECT_ID[(CALGB.phenoData$SUBJECT_ID %in% trainset) & CALGB.phenoData$pCR_Breast==1]
 
->     bachCal.GenSig.similarity(subject.sensitive=subject.sensitive,feature.select=feature.select,trainset=trainset,outprefix=outprefix,
+     bachCal.GenSig.similarity(subject.sensitive=subject.sensitive,feature.select=feature.select,trainset=trainset,outprefix=outprefix,
 
->                               subject.genotype.list=CALGB.genotype.list,preCalmatrix=CALGB.preCalmatrix,
+                               subject.genotype.list=CALGB.genotype.list,preCalmatrix=CALGB.preCalmatrix,
 
->                               tcga.genotype.list=TCGA.genotype.list,subject.gensigdir=CALGB.gensigdir,method=method,
+                               tcga.genotype.list=TCGA.genotype.list,subject.gensigdir=CALGB.gensigdir,method=method,
 
->                               redun.method=redun.method,redun.cut=redun.cut,minsize=minsize,sen.weightcut=sen.weightcut,res.weightcut=res.weightcut,
+                               redun.method=redun.method,redun.cut=redun.cut,minsize=minsize,sen.weightcut=sen.weightcut,res.weightcut=res.weightcut,
 
->                               power=power,root=root,ECNpenalty=ECNpenalty,rm.equivocal=rm.equivocal,
+                               power=power,root=root,ECNpenalty=ECNpenalty,rm.equivocal=rm.equivocal,
 
->                               highlevel.minsize=highlevel.minsize,confound.factor=confound,by.cluster=by.cluster) #p.cut should be assigned NULL if similarity index is used instead of correlation statistics
+                               highlevel.minsize=highlevel.minsize,confound.factor=confound,by.cluster=by.cluster) #p.cut should be assigned NULL if similarity index is used instead of correlation statistics
 
->   }
+   }
 
-> }
+ }
 
 ################################################################################
 ###### Step7. CALGB: dGenSig and benchmark test	 		
