@@ -59,6 +59,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 ######################################################################################
 ##### Step1. Load treatment outcome data files of CALGB, ACOSOG, and NOAH.
 ######################################################################################
+
 #phenoData must contain a column called "label" indicating whether the subject is "sen" or "res" or "mid"
 
 > CALGB.phenotypefile<-"/zfs2/xiaosongwang/sal170/17_9_iGenSig_b3.0.3_NOAH_IJB_NeoALTTO/70_GithubSubmissionTest_iGenSigOnco/PhenotypeData/CALGB_PhenotypesData_277s.tsv"
@@ -99,6 +100,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 #######################################################################################
 ##### Step4. Parameter settings 
 #######################################################################################
+
 #please specify parameters: 
 
 #1) the most important parameter is the sen.weightcut and res.weightcut. This parameter represents the signal to noise threshold.
