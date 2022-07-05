@@ -52,12 +52,12 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 
 ## Total running time on Windows 10 was ~ 2 hours. It can vary according to your computer's spec.
 
-> setwd("your working directory")#set your working directory
-> source("iGenSigOncologist_Modules_b3.2.3.R")
->
-################################################################################################################   
+>setwd("your working directory")
+>source("iGenSigOncologist_Modules_b3.2.3.R")
+
+########################################################################################   
 ##### Step1. Load treatment outcome data files of CALGB, ACOSOG, and NOAH.
-################################################################################################################   
+########################################################################################   
 #phenoData must contain a column called "label" indicating whether the subject is "sen" or "res" or "mid"
 
 > CALGB.phenotypefile<-"/zfs2/xiaosongwang/sal170/17_9_iGenSig_b3.0.3_NOAH_IJB_NeoALTTO/70_GithubSubmissionTest_iGenSigOnco/PhenotypeData/CALGB_PhenotypesData_277s.tsv"
@@ -73,9 +73,9 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 > NOAH.phenoData<-read.delim(NOAH.phenotypefile, stringsAsFactors=F,check.names=F,header=T,sep="\t")
 > NOAH.phenoData$label<-ifelse(NOAH.phenoData$pCR_Breast==1,"sen",ifelse(NOAH.phenoData$pCR_Breast==0,"res",NA)) #revise this based on different dataset
 
-################################################################################################################
+#########################################################################################
 ##### Step2. Load CALGB genotype and preCal datasets for iGenSig analysis   
-################################################################################################################
+#########################################################################################
 > TCGA.genotype.list <- readRDS("./GenotypePrecalmatrixData/TCGA.genotype.list.rds")
 > CALGB.genotype.list <- readRDS("./GenotypePrecalmatrixData/TCGACALGBgenotype.list.rds")
 > ACOSOG.genotype.list <- readRDS("./GenotypePrecalmatrixData/ACOSOG.genotype.list.rds")
@@ -83,10 +83,10 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 > CALGB.preCalmatrix <- readRDS("./GenotypePrecalmatrixData/CALGB.preCalmatrix.rds")
 > NOAH.preCalmatrix <- readRDS("./GenotypePrecalmatrixData/NOAH.preCalmatrix.rds")
 
-################################################################################################################
+#########################################################################################
 #####  Step3. Load testset sample annotation data. 
 #####		And Process GALGB.genotype and CALGB.phenoData to include only available subjects according to the annotation data
-################################################################################################################
+#########################################################################################
 > FoldAssignFile="/zfs2/xiaosongwang/sal170/17_9_iGenSig_b3.0.3_NOAH_IJB_NeoALTTO/70_GithubSubmissionTest_iGenSigOnco/TestsetAnnotationData/TestsetAssignments_CALGB_Arm1_2.tsv"
 > fold.assign=read.delim(FoldAssignFile,stringsAsFactors=F,row.names=1, check.names=F, header=T, sep="\t")
 > fold.assign["0",]=rep(0,ncol(fold.assign))# generate a set without testing set
@@ -95,18 +95,18 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 > CALGB.phenoData=CALGB.phenoData[CALGB.phenoData$SUBJECT_ID %in% colnames(fold.assign),]  # 265  15
 > CALGB.phenoData=CALGB.phenoData[!is.na(CALGB.phenoData$pCR_Breast),]
 
-################################################################################################################
+##########################################################################################
 ##### Step4. Parameter settings 
-################################################################################################################
+##########################################################################################
 #please specify parameters: 
 #1) the most important parameter is the sen.weightcut and res.weightcut. This parameter represents the signal to noise threshold.
 #2) the power can be set between 1 or 2, and ECNpenalty can be set as 0.5 or 1. We used an universal parameter root=1, power=1, and ECNpenalty=1 in the manuscript.
 
 > sen.weightcut<- 0.13; res.weightcut<- 0.13; root<- 1; ECNpenalty<- 1; power=1
 
-################################################################################################################
+###########################################################################################
 ##### Step5. Set up method and output directory for iGenSig-oncologist
-################################################################################################################
+###########################################################################################
 > parameters=list(genSig.outprefix="pearson",feature.select=NULL, confound=NULL,fold.assign=fold.assign,
 >                 FoldAssignFile=FoldAssignFile,method="pearson",
 >                 redun.method="ochiai",redun.cut=0.1,minsize=10,sen.weightcut=sen.weightcut,res.weightcut=res.weightcut,sen.pcut=1,res.pcut=1,
@@ -122,11 +122,13 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 > dir.create(CALGB.gensigdir)  # This is output sub-directory
 > save(parameters,file=paste0(subject.gensigdir,"/iGenSig.parameters.rda"))
 
-################################################################################################################
+############################################################################################
 ##### Step6. Calculate iGenSig-oncologist score based on similarity method: CALGB clinical trial
-################################################################################################################
-# Perform weighted K-S tests for each permuted training/testing set or all CALGB subjects as training set
-# If you want to calculate iGenSig-oncologist scores for 10 permutations, please run the for look like "for (i in 1:nrow(fold.assign)) {
+############################################################################################
+
+#Perform weighted K-S tests for each permuted training/testing set or all CALGB subjects as training set
+#If you want to calculate iGenSig-oncologist scores for 10 permutations, please run the for look like "for (i in 1:nrow(fold.assign)) {
+
 > for (i in 1:2) {			
 >   outprefix=paste0("trainset_", genSig.outprefix,"_Fold",rownames(fold.assign)[i])
 >   trainset=colnames(fold.assign)[which(fold.assign[i,]==0)]
@@ -150,24 +152,24 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 >   }
 > }
 
-################################################################################################################
+############################################################################################
 ##### Step7. CALGB: dGenSig and benchmark test	 		
-################################################################################################################
+############################################################################################
 > batchCal.dGenSig.trial2trial.train (gensigdir = subject.gensigdir, test.matrix= fold.assign[,colnames(fold.assign) %in% CALGB.phenoData$SUBJECT_ID[CALGB.phenoData$Tx_arm!=3]],
 >   		phenoData = CALGB.phenoData[CALGB.phenoData$Tx_arm!=3,], method=dgensig.method)
 
 > batchbenchmark.dGenSig.trial(gensig.dir=subject.gensigdir, phenoData=CALGB.phenoData[CALGB.phenoData$Tx_arm!=3,], by.cluster=by.cluster)
-######################################################################################################
+#############################################################################################
 ###### Step8. preparation for ACOSOG analysis
-######################################################################################################
+#############################################################################################
 > train.gensigdir=subject.gensigdir
 > ACOSOG.gensigdir=paste0(train.gensigdir,"_ACOSOG")
 > dir.create(ACOSOG.gensigdir)
 > dgensig.model=mget(load(paste(train.gensigdir,"/iGenSig.parameters.rda",sep=""), envir=(tmp<- new.env())), envir=tmp)
 > list2env(dgensig.model$parameters, .GlobalEnv)
-######################################################################################################
+#############################################################################################
 ##### Step 8. Calculate iGenSig-oncologist scores for Validation dataset: ACOSOG clinical trial data
-######################################################################################################
+#############################################################################################
 # If you want to calculate iGenSig-oncologist scores for 10 permutations, please run the for look like "for (i in 1:nrow(fold.assign)) {
 > for (i in 1:2) {
 >   outprefix=paste0("trainset_", genSig.outprefix,"_Fold",rownames(fold.assign)[i])
@@ -180,24 +182,24 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 >                             power=power,root=root,ECNpenalty=ECNpenalty,rm.equivocal=rm.equivocal,highlevel.minsize=highlevel.minsize,by.cluster=by.cluster,
 >                             validationset=TRUE) #p.cut should be assigned NULL if similarity index is used instead of correlation statistic
 > }
-######################################################################################################
+#############################################################################################
 ##### Step9. Calculate dGenSig scores and benchmark for Validation dataset: ACOSOG clinical trial data
-######################################################################################################
+#############################################################################################
 > batchCal.dGenSig.trial2trial.validation (train.gensigdir=train.gensigdir, validation.gensigdir=ACOSOG.gensigdir,method=dgensig.method)
 > batchbenchmark.dGenSig.trial(gensig.dir=ACOSOG.gensigdir, phenoData=ACOSOG.phenoData, by.cluster=by.cluster, event.col=15, time.col=16, validationset=TRUE)
 
-######################################################################################################
+#############################################################################################
 ##### Step10. preparation for NOAH analysis
-######################################################################################################
+#############################################################################################
 > train.gensigdir=subject.gensigdir
 > NOAH.gensigdir=paste0(train.gensigdir,"_NOAH")
 > dir.create(NOAH.gensigdir)
 > dgensig.model=mget(load(paste(train.gensigdir,"/iGenSig.parameters.rda",sep=""), envir=(tmp<- new.env())), envir=tmp)
 > list2env(dgensig.model$parameters, .GlobalEnv)
 
-######################################################################################################
+#############################################################################################
 ##### Step11. Calculated GenSig scores for Validation data: NOAH clinical trial data
-######################################################################################################
+#############################################################################################
 # If you want to calculate iGenSig-oncologist scores for 10 permutations, please run the for look like "for (i in 1:nrow(fold.assign)) {
 > for (i in 1:2) {
 >   outprefix=paste0("trainset_", genSig.outprefix,"_Fold",rownames(fold.assign)[i])
@@ -211,9 +213,9 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 >                             validationset=TRUE) #p.cut should be assigned NULL if similarity index is used instead of correlation statistic
 > }
 
-######################################################################################################
+#############################################################################################
 ##### Step12. option 1-2: calculate dGenSig and benchmark for Validation data: NOAH clinical trial data
-######################################################################################################
+#############################################################################################
 > batchCal.dGenSig.trial2trial.validation (train.gensigdir=train.gensigdir, validation.gensigdir=NOAH.gensigdir, method=dgensig.method)
 > batchbenchmark.dGenSig.trial(gensig.dir=NOAH.gensigdir, phenoData=NOAH.phenoData, by.cluster=by.cluster, validationset=TRUE)
 
