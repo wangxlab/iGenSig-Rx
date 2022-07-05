@@ -125,9 +125,9 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 > dir.create(CALGB.gensigdir)  # This is output sub-directory
 > save(parameters,file=paste0(subject.gensigdir,"/iGenSig.parameters.rda"))
 
-########################################################################################
+#######################################################################################
 ##### Step6. Calculate iGenSig-oncologist score based on similarity method: CALGB clinical trial
-########################################################################################
+#######################################################################################
 
 #Perform weighted K-S tests for each permuted training/testing set or all CALGB subjects as training set
 #If you want to calculate iGenSig-oncologist scores for 10 permutations, please run the for look like "for (i in 1:nrow(fold.assign)) {
@@ -221,9 +221,9 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 >                             validationset=TRUE) #p.cut should be assigned NULL if similarity index is used instead of correlation statistic
 > }
 
-########################################################################################
+#######################################################################################
 ##### Step12. option 1-2: calculate dGenSig and benchmark for Validation data: NOAH clinical trial data
-########################################################################################
+#######################################################################################
 
 > batchCal.dGenSig.trial2trial.validation (train.gensigdir=train.gensigdir, validation.gensigdir=NOAH.gensigdir, method=dgensig.method)
 > batchbenchmark.dGenSig.trial(gensig.dir=NOAH.gensigdir, phenoData=NOAH.phenoData, by.cluster=by.cluster, validationset=TRUE)
