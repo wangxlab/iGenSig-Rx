@@ -236,3 +236,5 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 ## E. Expected outcome
 •	Please find "./Result_iGenSigRx/0.13_RWC0.13_rt1_ENCpn1_Pw1/iGenSig_CALGB_ACOSOG/2022-07-02.dGenSig_XX_benchmark.result.xls" file. The file has the summary of the prediction performance AUROC.
 
+![image](https://user-images.githubusercontent.com/106251438/178335059-05891cbe-ee41-4c1b-8119-b8f565400c62.png)
+
