@@ -92,6 +92,7 @@ for (i in c(1,11)) {
 ################################################################################################################
 ####### Step7. CALGB: dGenSig and benchmark test	 		
 ################################################################################################################
+#We blocked this Step7 code lines which calculate iGenSig-RX performanc AUROC on CALGB because CALGB phenotypeData is not provided. CALGB phenotypeData is crendential.
 #batchCal.dGenSig.trial2trial.train (gensigdir = CALGB.gensigdir, test.matrix= fold.assign[,colnames(fold.assign) %in% CALGB.phenoData$SUBJECT_ID[CALGB.phenoData$Tx_arm!=3]],
 #  		phenoData = CALGB.phenoData[CALGB.phenoData$Tx_arm!=3,], method=dgensig.method)
 
