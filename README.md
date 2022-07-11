@@ -2,7 +2,7 @@
 
 ## iGenSig-Rx: an integral genomic signature based white-box method for modeling clinical therapeutic responses using genome-wide sequencing data
 
-•	The current version of iGenSig-Rx is beta 3.2.3 (July 5st, 2022). 
+•	The current version of iGenSig-Rx is beta 3.2.3 (July 11th, 2022). 
 
 •	The iGenSig-Rx was built on R version 4.1.0 and tested on Linux and Windows environment. 
 
