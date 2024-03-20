@@ -129,7 +129,8 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 ####################################################################################
 ##### Step5. Set up method and output directory for iGenSig-Rx
 ####################################################################################
-# Define the parameters dictionary
+
+#Define the parameters dictionary
 > parameters=list(genSig.outprefix="pearson",feature.select=NULL, confound=NULL,fold.assign=fold.assign,
 >                 FoldAssignFile=FoldAssignFile,method="pearson",
 >                 redun.method="ochiai",redun.cut=0.1,minsize=10,sen.weightcut=sen.weightcut,res.weightcut=res.weightcut,sen.pcut=1,res.pcut=1,
@@ -144,7 +145,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 > CALGB.gensigdir=paste(SubFolder, "/",  folder.prefix,sep="")
 > dir.create(CALGB.gensigdir)  # This is output sub-directory
 
-# Save the parameters to a file
+#Save the parameters to a file
 > save(parameters,file=paste0(CALGB.gensigdir,"/iGenSig.parameters.rda"))
 
 ####################################################################################
