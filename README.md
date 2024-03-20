@@ -95,25 +95,25 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 #####		And Process GALGB.genotype and CALGB.phenoData to include only available subjects according to the annotation data
 ####################################################################################
 
-# Load the fold assignments from the TSV file
+#Load the fold assignments from the TSV file
 
 > FoldAssignFile="./TestsetAnnotationData/TestsetAssignments_CALGB_Arm1_2.tsv"
 > fold.assign=read.delim(FoldAssignFile,stringsAsFactors=F,row.names=1, check.names=F, header=T, sep="\t")
 
-# Generate a set without the testing set (set all values in the first row to 0)
+#Generate a set without the testing set (set all values in the first row to 0)
 
 > fold.assign["0",]=rep(0,ncol(fold.assign))
 
-# Filter the CALGB genotype list based on the fold assignments
+#Filter the CALGB genotype list based on the fold assignments
 
 > CALGB.genotype.list=lapply(CALGB.genotype.list,filter,filter=colnames(fold.assign),inlist=TRUE)  
 > CALGB.genotype.list=lapply(CALGB.genotype.list,function(x) x[x %in% colnames(fold.assign)]) 
 
-# Filter the CALGB phenoData based on the fold assignments
+#Filter the CALGB phenoData based on the fold assignments
 
 > CALGB.phenoData=CALGB.phenoData[CALGB.phenoData$SUBJECT_ID %in% colnames(fold.assign),] 
 
-> # CALGB.phenoData=CALGB.phenoData[!is.na(CALGB.phenoData$pCR_Breast),] # This data is senstive. We can't open it. 
+> #CALGB.phenoData=CALGB.phenoData[!is.na(CALGB.phenoData$pCR_Breast),] # This data is senstive. We can't open it. 
 
 ####################################################################################
 ##### Step4. Parameter settings 
