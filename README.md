@@ -94,6 +94,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 #####  Step3. Load testset sample annotation data. 
 #####		And Process GALGB.genotype and CALGB.phenoData to include only available subjects according to the annotation data
 ####################################################################################
+
 # Load the fold assignments from the TSV file
 
 > FoldAssignFile="./TestsetAnnotationData/TestsetAssignments_CALGB_Arm1_2.tsv"
@@ -105,12 +106,12 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 
 # Filter the CALGB genotype list based on the fold assignments
 
-> CALGB.genotype.list=lapply(CALGB.genotype.list,filter,filter=colnames(fold.assign),inlist=TRUE)  # 223,904
+> CALGB.genotype.list=lapply(CALGB.genotype.list,filter,filter=colnames(fold.assign),inlist=TRUE)  
 > CALGB.genotype.list=lapply(CALGB.genotype.list,function(x) x[x %in% colnames(fold.assign)]) 
 
 # Filter the CALGB phenoData based on the fold assignments
 
-> CALGB.phenoData=CALGB.phenoData[CALGB.phenoData$SUBJECT_ID %in% colnames(fold.assign),]  # 265  15
+> CALGB.phenoData=CALGB.phenoData[CALGB.phenoData$SUBJECT_ID %in% colnames(fold.assign),] 
 
 > # CALGB.phenoData=CALGB.phenoData[!is.na(CALGB.phenoData$pCR_Breast),] # This data is senstive. We can't open it. 
 
