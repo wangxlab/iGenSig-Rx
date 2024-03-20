@@ -120,8 +120,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 ####################################################################################
 #please specify parameters: 
 
-#1) the most important parameter is the sen.weightcut and res.weightcut. This parameter represents the signal to noise threshold.
-#We have tested sen.weightcut and res.weightcut in the range 0.05~2.5. We found that 0.13 was the best to obtain signal against noise. 
+#1) the most important parameter is the sen.weightcut and res.weightcut. This parameter represents the signal to noise threshold. We have tested sen.weightcut and res.weightcut in the range 0.05~2.5. We found that 0.13 was the best to obtain signal against noise. 
 
 #2) the power can be set between 1 or 2, and ECNpenalty can be set as 0.5 or 1. We used an universal parameter root=1, power=1, and ECNpenalty=1 in the manuscript.
 
