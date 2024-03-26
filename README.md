@@ -157,7 +157,8 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 #If you want to calculate iGenSig-Rx scores for 10 permutations, please run the for look like "for (i in 1:nrow(fold.assign)) {
 
 
-> for (i in c(1:11)) {			
+> for (i in c(1:11)) {
+> 	
 >   outprefix=paste0("trainset_", genSig.outprefix,"_Fold",rownames(fold.assign)[i])
 >   trainset=colnames(fold.assign)[which(fold.assign[i,]==0)]
 >   trainset=trainset[trainset %in% CALGB.phenoData$SUBJECT_ID]
