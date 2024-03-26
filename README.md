@@ -158,7 +158,6 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 
 
 > for (i in c(1:11)) {
-> 	
 >   outprefix=paste0("trainset_", genSig.outprefix,"_Fold",rownames(fold.assign)[i])
 >   trainset=colnames(fold.assign)[which(fold.assign[i,]==0)]
 >   trainset=trainset[trainset %in% CALGB.phenoData$SUBJECT_ID]
