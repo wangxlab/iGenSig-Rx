@@ -131,6 +131,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 ####################################################################################
 
 #Define the parameters dictionary
+
 > parameters=list(genSig.outprefix="pearson",feature.select=NULL, confound=NULL,fold.assign=fold.assign,
 >                 FoldAssignFile=FoldAssignFile,method="pearson",
 >                 redun.method="ochiai",redun.cut=0.1,minsize=10,sen.weightcut=sen.weightcut,res.weightcut=res.weightcut,sen.pcut=1,res.pcut=1,
@@ -146,6 +147,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 > dir.create(CALGB.gensigdir)  # This is output sub-directory
 
 #Save the parameters to a file
+
 > save(parameters,file=paste0(CALGB.gensigdir,"/iGenSig.parameters.rda"))
 
 ####################################################################################
@@ -153,6 +155,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 ####################################################################################
 #Perform weighted K-S tests for each permuted training/testing set or all CALGB subjects as training set
 #If you want to calculate iGenSig-Rx scores for 10 permutations, please run the for look like "for (i in 1:nrow(fold.assign)) {
+
 
 > for (i in c(1:11)) {			
 >   outprefix=paste0("trainset_", genSig.outprefix,"_Fold",rownames(fold.assign)[i])
@@ -176,6 +179,7 @@ You can find annotation files containing the subject IDs of permutated CALGB tes
 >                               highlevel.minsize=highlevel.minsize,confound.factor=confound,by.cluster=by.cluster) #p.cut should be assigned NULL if similarity index is used instead of correlation statistics
 >   }
 > }
+
 
 ####################################################################################
 ##### Step7. CALGB: dGenSig and benchmark test	 		
