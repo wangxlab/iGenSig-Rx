@@ -204,3 +204,6 @@ batchbenchmark.dGenSig.trial(gensig.dir=NOAH.gensigdir, phenoData=NOAH.phenoData
 ## E. Expected outcome
 
 Please find "./Result_iGenSigRx/iGenSig_CALGB_ACOSOG/2024-03-26.dGenSig_45_benchmark.result.xls" file. The file has the summary of the prediction performance AUROC.
+
+![iGenSigRX_ACOSOG_ResultExample](https://github.com/wangxlab/iGenSig-Rx/assets/106251438/aab2af8e-1616-46e9-8dd7-a681a7fe828d)
+
