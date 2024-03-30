@@ -79,7 +79,7 @@ save(parameters,file=paste0(CALGB.gensigdir,"/iGenSig.parameters.rda"))
 
 ## Step2. Calculate iGenSig-Rx score based on similarity method: CALGB clinical trial
 
-**CALGB clinical data** is sensitive data, so we can't open the data to the public.**
+**CALGB clinical data** is restricted by data use agreement, thus we can't release the clincal data to the public. Users can obtain the data from dbGaP using accession: phs001570**
 
 Perform weighted K-S tests for each permuted training/testing set or all CALGB subjects as training set
 
