@@ -79,6 +79,8 @@ save(parameters,file=paste0(CALGB.gensigdir,"/iGenSig.parameters.rda"))
 
 ## Step2. Calculate iGenSig-Rx score based on similarity method: CALGB clinical trial
 
+**CALGB clinical data** is sensitive data, so we can't open the data to the public.**
+
 Perform weighted K-S tests for each permuted training/testing set or all CALGB subjects as training set
 
 If you want to calculate iGenSig-Rx scores for 10 permutations, please run the for look like "for (i in 1:nrow(fold.assign)) {"
