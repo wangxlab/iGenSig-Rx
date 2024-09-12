@@ -83,7 +83,7 @@ save(parameters,file=paste0(CALGB.gensigdir,"/iGenSig.parameters.rda"))
 
 Perform weighted K-S tests for each permuted training/testing set or all CALGB subjects as training set
 
-If you want to calculate iGenSig-Rx scores for 10 permutations, please run the for look like "for (i in 1:nrow(fold.assign)) {"
+If you want to calculate iGenSig-Rx scores for 10 permutations, please run the for loop like "for (i in 1:nrow(fold.assign)) {"
 
 ```{iGenSig_Rx score on CALGB}
 for (i in c(1)) {
